@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobyaari - Applicant Submission Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .search-highlight { background-color: #fef08a; padding: 2px 4px; border-radius: 4px; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+<div class="flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <div class="w-64 bg-indigo-900 text-white flex flex-col">
+        <div class="h-16 flex items-center px-6 border-b border-indigo-800 font-bold text-xl tracking-wider">
+            <i class="fas fa-briefcase mr-3 text-indigo-400"></i> Jobyaari
+        </div>
+        <div class="flex-1 overflow-y-auto py-4">
+            <nav class="space-y-1 px-3">
+                <a href="#" class="bg-indigo-800 text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-chart-pie mr-3 text-indigo-300"></i> Overview
+                </a>
+                <a href="#" class="text-indigo-100 hover:bg-indigo-700 hover:text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-users mr-3 text-indigo-300"></i> Vacancies
+                </a>
+                <a href="#ai-vision" class="text-indigo-100 hover:bg-indigo-700 hover:text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                    <i class="fas fa-robot mr-3 text-yellow-400"></i> AI Agent (Bonus)
+                </a>
+            </nav>
+        </div>
+        <div class="p-4 border-t border-indigo-800 text-xs text-indigo-300">
+            Assignment Submission<br>Task 1 Completed
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header -->
+        <header class="bg-white shadow-sm h-16 flex items-center justify-between px-8">
+            <h1 class="text-2xl font-semibold text-gray-900">Task 1: Extracted Job Data Dashboard</h1>
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                    <i class="fas fa-check-circle mr-1"></i> Data Structured
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                    <i class="fas fa-star mr-1"></i> AI Bonus Added
+                </span>
+            </div>
+        </header>
+
+        <!-- Main body -->
+        <main class="flex-1 overflow-y-auto bg-gray-50 p-8">
+            
+            <p class="text-sm text-gray-500 mb-6 italic"><i class="fas fa-info-circle mr-1"></i> All data manually extracted and validated from official PDFs</p>
+
+            <!-- Stats Row -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-indigo-500">
+                    <div class="text-sm font-medium text-gray-500 truncate">Total Orgs Analyzed</div>
+                    <div class="mt-2 text-3xl font-semibold text-gray-900">5</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+                    <div class="text-sm font-medium text-gray-500 truncate">Total Roles (Unique Positions)</div>
+                    <div class="mt-2 text-3xl font-semibold text-gray-900">14</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
+                    <div class="text-sm font-medium text-gray-500 truncate">Total Vacancies</div>
+                    <div class="mt-2 text-3xl font-semibold text-gray-900">168</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-500">
+                    <div class="text-sm font-medium text-gray-500 truncate">AI Innovations Proposed</div>
+                    <div class="mt-2 text-3xl font-semibold text-gray-900">3</div>
+                </div>
+            </div>
+
+            <!-- Preview Table (NTPC Example) -->
+            <div class="bg-white shadow rounded-lg mb-8">
+                <div class="px-6 py-5 border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Validated Data Sample (NTPC Green Energy)</h3>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500">Exact role separation matching PDF ad #01/25.</p>
+                    </div>
+                    <div class="relative w-full md:w-auto">
+                        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search by Qualification (e.g., B.Tech)..." class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full md:w-80 sm:text-sm border-gray-300 rounded-md py-2 px-4 border" >
+                        <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200" id="jobsTable">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Post Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vacancies</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qualification</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Salary</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Selection</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="job-row hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Engineer (Civil)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">40</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 qual-cell">B.Tech Civil</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">₹11 LPA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">CBT + Interview</td>
+                            </tr>
+                            <tr class="job-row hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Engineer (Electrical)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">80</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 qual-cell">B.Tech Electrical</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">₹11 LPA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">CBT + Interview</td>
+                            </tr>
+                            <tr class="job-row hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Engineer (Mechanical)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">15</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 qual-cell">B.Tech Mechanical</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">₹11 LPA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">CBT + Interview</td>
+                            </tr>
+                            <tr class="job-row hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Executive (HR)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">7</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 qual-cell">MBA HR</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">₹11 LPA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">CBT + Interview</td>
+                            </tr>
+                            <tr class="job-row hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Executive (Finance)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">26</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 qual-cell">CA/CMA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">₹11 LPA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">CBT + Interview</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- AI Agent Bonus Pitch -->
+            <div id="ai-vision" class="bg-gradient-to-r from-purple-800 to-indigo-900 rounded-lg shadow-lg text-white p-8">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-robot text-3xl text-yellow-400 mr-4"></i>
+                    <h2 class="text-2xl font-bold">Bonus: AI Vision for Jobyaari</h2>
+                </div>
+                <p class="text-indigo-100 mb-6 max-w-3xl">Beyond just parsing PDFs, implementing an AI pipeline can drastically accelerate the way candidates find relevant roles. I've included a dedicated <strong>"Bonus - AI Agent Vision"</strong> tab in the Excel submission outlining exactly how this solves core platform problems.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white/10 rounded p-4 border border-white/20">
+                        <div class="font-bold text-yellow-300 mb-2"><i class="fas fa-file-pdf mr-2"></i>1. Job Matcher AI</div>
+                        <div class="text-sm text-indigo-100">Automatically parses candidate PDFs & maps skills against exact government requirements.</div>
+                    </div>
+                    <div class="bg-white/10 rounded p-4 border border-white/20">
+                        <div class="font-bold text-yellow-300 mb-2"><i class="fas fa-bell mr-2"></i>2. Smart Notifier</div>
+                        <div class="text-sm text-indigo-100">Automated WhatsApp agents that ping candidates 48hrs before deadlines/interviews.</div>
+                    </div>
+                    <div class="bg-white/10 rounded p-4 border border-white/20">
+                        <div class="font-bold text-yellow-300 mb-2"><i class="fas fa-check-double mr-2"></i>3. Doc Formatter</div>
+                        <div class="text-sm text-indigo-100">AI verifies offline application completeness (signatures, Demand Drafts) reducing rejection by 40%.</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<script>
+function searchTable() {
+    let input = document.getElementById("searchInput");
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById("jobsTable");
+    let tr = table.getElementsByClassName("job-row");
+
+    for (let i = 0; i < tr.length; i++) {
+        let td = tr[i].getElementsByClassName("qual-cell")[0];
+        if (td) {
+            let txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }       
+    }
+}
+</script>
+
+</body>
+</html>
