@@ -21,11 +21,11 @@ pip install pandas openpyxl
 1.  **Generate the Data:**
     First, run the `generate_excel.py` script. This will create the `Task1_Completed.xlsx` file in the current directory.
     ```bash
-    python c:\Users\prabu\Downloads\hur\generate_excel.py
+    python c:\Users\srushti\Downloads\hur\generate_excel.py
     ```
 
 2.  **View the Data:**
     Once the Excel file is created, run the `view_excel.py` script to see the data presented in your browser.
     ```bash
-    python c:\Users\prabu\Downloads\hur\view_excel.py
+    python c:\Users\srushti\Downloads\hur\view_excel.py
     ```
